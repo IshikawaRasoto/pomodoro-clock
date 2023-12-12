@@ -5,6 +5,8 @@ import PauseButton from './PauseButton';
 import ConfigButton from './ConfigButton';
 import SettingsContext from './SettingsContext';
 import { useContext, useState, useEffect, useRef } from 'react';
+import RestartButton from './RestartButton';
+import SkipButton from './SkipButton';
 
 const lightBlue = '#A2FFF4';
 const lightGreen = '#99D5BF';
@@ -63,13 +65,25 @@ function Timer() {
 
   return (
     <div>
+      <h1 style={{color: lightBlue}}>{mode === 'work' ? 'Work 🧑‍💻' : 'Break 😎'}</h1>
+
       <CircularProgressbar value={percentage} text={minutes + ':' + seconds} styles={buildStyles({
         textColor: lightBlue,
         pathColor: lightBlue,
         trailColor: mediumBlue,
       })}/>
       <div style={{marginTop:'20px'}}>
+        {isPaused && <RestartButton onClick={() => {setSecondsLeft(totalSeconds); secondsLeftRef.current = totalSeconds;}}/>}
         {isPaused ? <PlayButton onClick={() => {setIsPaused(false); isPausedRef.current=false;}}/> : <PauseButton onClick={() => {setIsPaused(true); isPausedRef.current=true}}/>}
+        {isPaused && <SkipButton onClick={() => {
+          const nextMode = modeRef.current === 'work' ? 'break' : 'work';
+          setMode(nextMode); 
+          modeRef.current = nextMode;
+          
+          const nextSeconds = modeRef.current === 'work' ? settingsInfo.workMinutes * 60 : settingsInfo.breakMinutes * 60;
+          setSecondsLeft(nextSeconds);
+          secondsLeftRef.current = nextSeconds;
+        }}/>}
       </div>
       <div style={{marginTop:'20px'}}>
         <ConfigButton onClick={() => {settingsInfo.setShowSettings(true)}}  />
