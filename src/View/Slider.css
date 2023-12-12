@@ -1,0 +1,14 @@
+.slider{
+    margin-top: 10px;
+    height: 40px;
+    border: 2px solid var(--lightBlue);
+    border-radius: 20px;
+}
+
+.thumb{
+    background-color: var(--lightBlue);
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+}
