@@ -47,3 +47,11 @@ button:hover{
   background-color: #001D2B;
   border-radius: 15px;
 }
+
+.comment{
+  font-size: 12pt;
+}
+
+.comment a{
+  color: #A2FFF4;
+}

@@ -32,7 +32,9 @@ function App() {
         {showSettings ? <Settings/> : <Timer />}
       </SettingsContext.Provider>
 
-      
+      <div class="comment">
+        <p>Created by <a href='https://github.com/IshikawaRasoto'>IshikawaRasoto</a></p>
+      </div>
       
     </main>
   );
